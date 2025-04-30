@@ -43,7 +43,8 @@ export default defineComponent({
         { id: 'pades', title: 'Pades' },
         { id: 'cades', title: 'Cades' },
         { id: 'xades', title: 'Xades' }
-      ]
+      ],
+      showSuccessPopup: false,
     }
   },
   mounted() {
@@ -316,6 +317,7 @@ export default defineComponent({
               this.logs.push("Sizin sunucu katmanına FinishSign istiği sonucu: İşlem başarılı.");
               this.waitString = "İmza işlemi tamamlandı.";
               this.operationId = createStateResult.operationId;
+              this.showSuccessPopup = true;
             } else {
               this.logs.push("Sizin sunucu katmanına FinishSign istiği sonucu: İşlem başarısız.");
               this.waitString = "İmza işlemi tamamlanamadı.";
@@ -559,6 +561,21 @@ export default defineComponent({
             </button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div v-if="showSuccessPopup" class="success-popup-overlay">
+      <div class="success-popup">
+        <div class="success-icon">✓</div>
+        <h3>İmzalama İşlemi Tamamlandı</h3>
+        <p>Bu belge 5070 sayılı kanuna göre elektronik olarak imzalanmıştır.</p>
+        <button @click="downloadSignedFile" class="download-btn">
+          İmzalı Dosyayı İndir
+        </button>
+        <button @click="showSuccessPopup = false" class="close-btn">
+          Kapat
+        </button>
       </div>
     </div>
   </div>
@@ -871,5 +888,74 @@ button:disabled {
   .metadata, .signature-section {
     padding: 1.5rem;
   }
+}
+
+/* Success Popup Styles */
+.success-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.success-popup {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+  font-size: 3rem;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.success-popup h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.success-popup p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.success-popup .download-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.success-popup .close-btn {
+  background-color: #f5f5f5;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.success-popup .download-btn:hover {
+  background-color: #45a049;
+}
+
+.success-popup .close-btn:hover {
+  background-color: #e0e0e0;
 }
 </style> 
