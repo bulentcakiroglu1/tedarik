@@ -521,6 +521,21 @@ export default defineComponent({
             <span>{{ documentInfo.documentType }}</span>
           </div>
         </div>
+        <div class="signers-section">
+          <h3>İmzacılar</h3>
+          <div class="metadata-item">
+            <span class="metadata-label">Sizden Önce İmzalayan:</span>
+            <span>Bülent Çakıroğlu</span>
+          </div>
+          <div class="metadata-item">
+            <span class="metadata-label">Tarih:</span>
+            <span>05.04.2025</span>
+          </div>
+          <div class="metadata-item">
+            <span class="metadata-label">Sıradaki İmzacı:</span>
+            <span>Uluç Efe Öztürk</span>
+          </div>
+        </div>
         <div class="signature-section">
           <h3>İmzalama</h3>
           <div v-if="error" class="error-message">{{ error }}</div>
@@ -664,14 +679,14 @@ canvas {
   min-width: 400px;
 }
 
-.metadata, .signature-section {
+.metadata, .signature-section, .signers-section {
   background-color: white;
   border-radius: 12px;
   padding: 2.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.metadata h3, .signature-section h3 {
+.metadata h3, .signature-section h3, .signers-section h3 {
   color: #2c3e50;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
@@ -862,7 +877,7 @@ button:disabled {
     aspect-ratio: 1 / 1.4142;
   }
 
-  .metadata, .signature-section {
+  .metadata, .signature-section, .signers-section {
     padding: 2rem;
   }
 }
@@ -885,7 +900,7 @@ button:disabled {
     padding: 1rem;
   }
 
-  .metadata, .signature-section {
+  .metadata, .signature-section, .signers-section {
     padding: 1.5rem;
   }
 }
